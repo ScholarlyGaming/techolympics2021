@@ -1,0 +1,11 @@
+This is very similar to the previous pebble problem.
+
+The only major differences:
+  - Attempting to use an even number of pebbles will tell the user to pick an odd number (in keeping with game rules)
+  - The computer has a goal of leaving the human 1 pebble, so it will always try to give the human 4k+1 pebbles
+      - It will play p%4-1 pebbles if given p pebbles; if this is -1, it will adjust it to 3
+  - The computer does not accept playing with 4k+1 pebbles and will force the player to go first so that it can win
+  
+This required me to reuse some logic so that the player's first turn if the computer refuses to play first will work 100% of the time. This is necessary if the player gives the computer 1 pebble, in which case it will give it to the player and win immediately. I also relabeled everything to counters.
+
+This program also runs in Python 3 and uses the interactive interpreter to run.
