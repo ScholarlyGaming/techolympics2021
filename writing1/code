@@ -1,0 +1,9 @@
+number = int(input("Enter number to check: "))
+if number % 21 == 0:
+    print("TechOlympics")
+elif number % 3 == 0:
+    print("Tech")
+elif number % 7 == 0:
+    print("Olympics")
+else:
+    print(number)
