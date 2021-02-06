@@ -22,6 +22,8 @@ while n>0:
     while x<1 or x>5:
         x=int(input("Your legal move? (Take 1-5 pebbles.) Take "))
     n-=x
+    if n<0:
+        n=0
     if n==1:
         print("(There's only 1 pebble left.)")
     else:
