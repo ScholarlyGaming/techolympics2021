@@ -1,0 +1,56 @@
+<html>
+<body>
+<script>
+
+//Creates a new function
+function buildArray(inputString)
+{
+    myList = new Array();
+    //Splits the string into an array at every comma; ex: "1,2,3" would turn into ["1","2","3"].
+	  myList = inputString.split(",");
+    //Of course, the elements of this array are still strings, and this for loop is here to fix it.
+    //Loops through the array and converts every element to an integer individually.
+	  for (item = 0; item < myList.length; item++)
+	  {
+		    myList[item] = parseInt(myList[item]);
+	  }
+    return myList;
+}
+
+/* What does the function doTheThing do? */
+function doTheThing(myList)
+{
+    //myList is expected to be an array of integers.
+    var x = 0;
+    //This loop goes through every element of myList and adds it to x.
+    for (i = 0; i < myList.length; i++)
+    {
+        x = x + myList[i];
+    }
+    //Every element of myList has now been added to x.
+    //Therefore, this function returns the sum of all of the elements of myList.
+    return x;
+}
+function submit()
+{
+    //Gets the input
+	  var inputString = document.getElementById("inputBox").value;
+    //Turns the input into an array of integers
+	  var myList = buildArray(inputString); 
+    //Adds up all the elements of myList
+    var result = doTheThing(myList);
+	  //Sets the return div's contents to the result from the last line
+	  document.getElementById("result").innerHTML = result;
+
+}
+</script>
+<!-- This is out of the <p> tags! The text will still display but this is usually not good form. -->
+<!-- The <p> tags will create a line break and some extra space. -->
+Input a list of integers separated by commas, e.g. 4, 1, 2, 6, 3, 4<p></p>
+<!-- Sets up the input area and button. -->
+<input id="inputBox"></input><button id="submit" onclick="submit()">submit data</button>
+<!-- This is where the summation will be displayed -->
+<div id="result">
+</div>
+</body>
+</html>
