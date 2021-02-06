@@ -1,0 +1,48 @@
+<html>
+<!-- Note that no head is present, so the created webpage will have the default title/icon. -->
+<body>
+<script text="text/javascript">
+
+//Create a new function that is run once the submit button is pressed
+function submit()
+{
+    //Get the inputs from the boxes in the table
+	  var inputStringA = document.getElementById("inputBoxA").value;
+    var inputStringB = document.getElementById("inputBoxB").value;
+    //Turn these inputs into integers (problem: there's no data validation here, so the inputs could be formatted to not be integers)
+    var a = parseInt(inputStringA);
+    var b = parseInt(inputStringB);
+    //Let A and B be a and b as they were before these statement occur:
+    //Add b to a: a = A+B
+    a = a+b;
+    //Let b equal a-b: b = A+B-B; b = A
+    b = a-b;
+    //Subtract b from a: a = A+B-A; a = B
+    a = a-b;
+    //This function therefore swaps a and b so that each one takes on the other's value.
+    //Sets the text of the input boxes to be a and b, respectively:
+    document.getElementById("inputBoxA").value = a;
+    document.getElementById("inputBoxB").value = b;
+    //The end result of the function is that the values that are in both boxes are switched.
+    //This could be done more efficiently by setting the value of the "inputBoxA" element to inputStringB and the value of the "inputBoxB" element to inputStringA.
+    //a and b are not used anywhere else and are not stored between uses so this would be identical.
+}
+</script>
+<!-- Create a table that contains the inputs -->
+<table>
+    <tr>
+        <th>Input A</th><th>Input B</th></tr>
+    </tr>
+    <tr>
+<td><input id="inputBoxA"></input></td>
+<td><input id="inputBoxB"></input></td>
+</tr>
+</table>
+
+<!-- This button will submit the two inputs and run the function -->
+<button id="submit" onclick="submit()">submit data</button>
+<!-- Nothing ever happens to this div, it will just stay empty. -->
+<div id="result">
+</div>
+</body>
+</html>
