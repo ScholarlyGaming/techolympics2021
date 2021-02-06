@@ -1,0 +1,22 @@
+As everyone knows, the legendary pebble problem is completely fair for everyone involved and is not rigged against any player whatsoever. It's why bots can easily win in most scenarios with it.
+
+Jokes aside, this problem is all about the number 6.
+
+The bot can always win if the player has 6 pebbles because no matter how many pebbles the player takes (as long as it's a legal move), the bot can take the rest of the pebbles and win. 
+
+The bot can also always win if the player has 12 pebbles because no matter how many pebbles the player takes the bot can take 6-x pebbles (where x is the number the player took) and give the player 6 pebbles. As stated earlier the bot wins here.
+
+By similar logic, the bot will win 100% of the time if it can give the player a number of pebbles that is divisible by 6.
+
+However (assuming the player plays perfectly) the bot will always lose if it gets 6n pebbles initially as there is no legal move that can give the player a safe number of pebbles.
+
+In my program, I added a number of features:
+    - Error correction (no negative pebbles or invalid player moves)
+    - Recognition of when the bot cannot guarantee a win
+    - Clear display of how many pebbles the bot took and how many pebbles are left
+    - Grammar rules because English is fun
+    - Computer bragging about winning, slightly
+
+I used many if statements and while loops to pull this off. I also used a break so that the game could end on the computer's turn automatically if it wins.
+
+It runs in Python 3. I'd suggest using the interactive interpreter but you can probably just pre-move the entire game just because of what game it is.
