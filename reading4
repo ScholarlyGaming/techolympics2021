@@ -1,0 +1,90 @@
+<html>
+<body>
+<script>
+
+//Creates two variables to be used later
+var limitA = 60;
+var limitB = 60;
+
+function makeNice(x)
+{
+    //Expects an integer.
+    //If x is larger than 9 (two digits)...
+    if (x > 9)
+        return x;
+    //simply return x.
+    //Otherwise, return x with a zero in front of it. Note that x does become a string now.
+    return "0"+x;
+    //Essentially this function will ensure that x will always be two "digits" long.
+}
+function bop()
+{
+    //Runs whenever a bip is triggered and element "B" is reset to 0 after exceeding 59
+    //Gets the input - the contents of element "C"
+	  var inputString = document.getElementById("C").innerHTML;
+    //Turns the input into an integer
+    var val = parseInt(inputString);
+    //Adds 1 to the input
+    val = val + 1;
+    //Displays the result in the third column with two digits, generally
+    //Note: If you were insane enough to boop the button 360,000 times, you could get "C" to become 3 digits, as there are no limitations on "C".
+	  document.getElementById("C").innerHTML = makeNice(val);
+}
+
+/* What does the function bip() do? */
+function bip()
+{
+    //Runs whenever a boop is triggered and element "A" is reset to 0 after exceeding 59
+    //Gets the input - the contents of element "B"
+	  var inputString = document.getElementById("B").innerHTML;
+    //Turns this input into an integer
+    var val = parseInt(inputString);
+    //Adds 1 to it
+    val = val + 1;
+    //If this sets the input equal to limitB (60) or above it...
+    if (val >= limitB)
+    {
+        //...resets the input...
+        val = 0;
+        //...and triggers a bop.
+        bop();
+    }
+    //Displays the result in the second column nicely.
+	  document.getElementById("B").innerHTML = makeNice(val);
+}
+function boop()
+{
+    //Gets the input - the contents of element "A"
+	  var inputString = document.getElementById("A").innerHTML;
+    //Turns this input into an integer...
+    var val = parseInt(inputString);
+    //...and adds 1 to it
+    val = val + 1;
+    //If this sets the input equal to limitA (60) or above it...
+    if (val >= limitA)
+    {
+        //...resets the input to 0...
+        val = 0;
+        //...and sets off a bip.
+        bip();
+    }
+    //Displays the result in the third column nicely.
+	  document.getElementById("A").innerHTML = makeNice(val);
+}
+
+//End result of boop, bip, bop, and makeNice is the creation of a kind of timer.
+//Each time you press the button, one "second" passes.
+//When this would increase the number of "seconds" to or beyond 60, a "minute" is added.
+//And when this would increase the number of "minutes" to or beyond 60, an "hour" is added.
+//bip is the function that controls "minutes", adding one minute whenever 60 seconds is reached and
+//    resetting the number of minutes/ triggering bop to add one hour when 60 minutes is reached.
+</script>
+<!-- The display for this function. Initializes at 00:00:00 and changes after every boop, bip, and bop. -->
+<!-- C is the first, B is the second, and A is the third. -->
+<span id="C">00</span>:<span id="B">00</span>:<span id="A">00</span>
+<!-- Boops the display when clicked. -->
+<button id="submit" onclick="boop()">Boop!</button>
+<!-- ...although none of this code works currently, because this </div> would lead to an error. -->
+</div>
+</body>
+</html>
