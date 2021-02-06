@@ -1,0 +1,37 @@
+...okay, yeah, that might need a bit of explaining.
+
+Basically I solved a modular equation to optimize this solution.
+
+We know that the number of coconuts that everyone gets at every step must be an integer.
+
+Assume we start with a coconuts.
+
+As Alexa takes 1/3 and leaves one to the monkey, we know that a=3b+1, where b is the amount of coconuts that Alexa took. b must be an integer.
+
+As Karen takes 1/3 of what's left and leaves one to the monkey, we know that 2b=3c+1, where c is the amount of coconuts that Karen took. c must be an integer.
+
+As Taron takes 1/3 of what's left and leaves one to the monkey, we know that 2c=3d+1, where d is the amount of coconuts that Taron took. d must be an integer.
+
+And, lastly, the three split up the rest and leave one to the monkey, so 2d=3e+1, where e is the integer amount of coconuts that everyone split up to get.
+
+We can combine these equations as such:
+a=3b+1
+2a=6b+2
+2a=9c+5
+4a=18c+10
+4a=27d+19
+8a=54d+38
+8a=81e+65
+
+e is unknown, but we can remove it by solving in mod 81:
+
+8a==65 mod 81
+a==65/8 mod 81
+
+To solve for 65/8 in mod 81, we need to find an integer i such that i*8=81*j+65 for some j. But we already know that 79 must work thanks to the examples, so 79 is a good first check. Sure enough, 79*8=81*7+65.
+
+Therefore, if a can be the number of coconuts, then a%79 must equal 65.
+
+Hence my code that's only five lines long.
+
+It runs in Python 3 and runs best in interactive interpreter mode. Output will be on a new line.
