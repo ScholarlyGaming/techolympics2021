@@ -1,0 +1,1 @@
+I ran into a lot of issues with this one. I approached this by finding the number of times a word appeared in each text, selecting a random index, getting a text that corresponded to that index, and then removing the matches until it gets the last one. Then it finds the word after that and adds it on.
