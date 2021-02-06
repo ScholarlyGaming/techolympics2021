@@ -1,0 +1,72 @@
+#
+#  RectanglesBuggy.py - draws three rectangles 
+#
+# Inputs two integers, n and m, and outputs three n x m rectangles,
+# one solid, one hollow and one checkered.  For example, for 4 and 7: 
+# 
+#  *******   
+#  *******     
+#  *******     
+#  *******  
+#                           
+#  ******* 
+#  *     *
+#  *     *
+#  ******* 
+# 
+#  * * * *
+#   * * * 
+#  * * * *
+#   * * * 
+#    
+
+# Swapped m and n, as it was creating a rectangle with 4 columns and 7 rows instead of 4 rows and 7 columns
+def drawSolidRectangle(n,m):
+# draws solid rectangle
+	for r in range(1,n+1):
+		for  c in range(1,m+1): 
+			print("*",end='')
+		print()
+
+# This created rectangles that were one row too long. So I subtracted one from the last element of the range function in each instance EXCEPT the one relating to r in the inner rows section.
+def drawHollowRectangle(n,m):
+# draws top row of hollow rectangle
+	for c in range(0,m): 
+		print("*",end='')
+	print()
+					
+# draws inner rows of hollow rectangle
+# This range is not changed.
+	for r in range(2,n): 
+		print("*",end='')
+		# Could also be fixed to range(0,m) but this would make my description of the solution non-uniform.
+		for c in range(1,m-1): 
+			print(" ",end='')
+		print("*")
+
+#draws final row of hollow rectangle
+	for c in range(m): 
+		print("*",end='')
+	print()	
+
+    
+# This function was only referring to c, so it created strips of asterisks instead of the desired checkered pattern. Therefore, I replaced c with (r+c) in the if statement so that the value of r was a factor in filling in spaces too.
+def checkeredRectangle(n,m):
+# draws checkered rectangle
+	for r in range(1,n+1):
+		for c in range(1,m+1): 
+			if (r+c) % 2 == 0:
+				print("*",end='')
+			else:
+				print(" ",end='')
+		print()
+
+n = int(input("Enter the number of rows"))
+m = int(input("Enter the number of columns"))
+		
+drawSolidRectangle(n,m)
+print()
+drawHollowRectangle(n,m)
+print()
+checkeredRectangle(n,m)
+print()
