@@ -1,0 +1,5 @@
+I simply used if/elif/else checks to solve this problem. The code is in Python 3.
+
+It accepts standard input and interactive terminal input but interactive terminal input will make it easier to read. After hitting ENTER with a number in the prompt, the output will go on a new line.
+
+I did not make the program loop as I was unsure if that would be wanted.
