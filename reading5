@@ -1,0 +1,94 @@
+<html>
+<body>
+<script>
+
+//Previously analyzed in reading 2
+//Creates an array of integers based off of a string, splitting the string by commas
+function buildArray(inputString)
+{
+    myList = new Array();
+	  myList = inputString.split(",");
+	  for (item = 0; item < myList.length; item++)
+	  {
+		    myList[item] = parseInt(myList[item]);
+	  }
+    return myList;
+}
+
+/* What do the functions B, A, doTheThing do? */
+function B(myList, i, resultSoFar)
+{
+    //If i is equal to the length of myList, return the result we have and stop calling A and B.
+    //This will end the doTheThing function.
+    if (i == myList.length)
+        return resultSoFar;
+    //Otherwise, call A, SUBTRACT the value of the element with an index of i from the current result, and increase the counter i by 1.
+    //Subtraction is important - it is the main difference between A and B.
+    else return A(myList, i+1, resultSoFar - myList[i]);
+}
+function A(myList, i, resultSoFar)
+{
+    //If i is equal to the length of myList, return the result we have and stop calling A and B.
+    //This will end the doTheThing function.
+    if (i == myList.length)
+        return resultSoFar;
+    //Otherwise, call B, ADD the value of the element with an index of i from the current result, and increase the counter i by 1.
+    else return B(myList, i+1, resultSoFar + myList[i]);
+}
+function doTheThing(myList)
+{
+    //...this variable is actually never used, as no other function can access it. Not that any of them try, but still...
+    var count = 0;
+    //Triggers A to start with the list given, a counter of 0, and an initial result of 0.
+    return A(myList,0,0);
+}
+
+//The result of the doTheThing function is that we will alternate between adding and subtracting elements in the list from a total.
+//The first item will be added, the second will be subtracted, the third added, etc...
+//After all elements of the list have been used in some way, stop and return the final result.
+//Ex: L=[1, 2, 5, 3, 5]:
+//  A(L, 0, 00) - Initialized by doTheThing
+//  B(L, 1, 01) - 0 != 5, add L[0] (1) to 00 and call B
+//  A(L, 2, -1) - 1 != 5, subtract L[1] (2) from 01 and call A
+//  B(L, 3, 04) - 2 != 5, add L[2] (5) to -1 and call B
+//  A(L, 4, 01) - 3 != 5, subtract L[3] (3) from 04 and call A
+//  B(L, 5, 06) - 4 != 5, add L[4] (5) to 01 and call B
+//  6           - 5 == 5, so return the last result 6
+//doTheThing initializes the cycle and returns the result.
+//A and B both perpetuate the cycle by checking to see if the counter has reached its maximum.
+//A is the first function called by doTheThing, and it adds to the final result.
+//B is the second function, and it subtracts from the final result.
+//Note that an alternate way to program this (replacing submit()) would be to use a loop with two if statements or an if-else:
+//var myList = buildArray(document.getElementById("inputBox").value);
+//var result = 0;
+//for(var i = 0; i < myList.length; i++)
+//{
+//    if(i%2 = 0)
+//        result += input[i];
+//    else
+//        result -= input[i];
+//}
+//document.getElementById("result").innerHTML = result;
+
+function submit()
+{
+    //Gets the input
+	  var inputString = document.getElementById("inputBox").value;
+    //Converts it into a list of integers
+	  var myList = buildArray(inputString); 
+    //Calculates the summation
+    var result = doTheThing(myList);
+	  //Shows the result
+	  document.getElementById("result").innerHTML = result;
+
+}
+</script>
+<!-- Again, the text is not in <p> brackets, leading to possible issues -->
+Input a list of integers separated by commas, e.g. 4, 1, 2, 6, 3, 4<p></p>
+<!-- Input field and submit button -->
+<input id="inputBox"></input><button id="submit" onclick="submit()">submit data</button>
+<!-- Where the result will be displayed -->
+<div id="result">
+</div>
+</body>
+</html>
