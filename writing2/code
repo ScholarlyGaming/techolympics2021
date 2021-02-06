@@ -1,0 +1,5 @@
+n=int(input("Enter number to check: "))
+s=str(n)+" could"
+if n%81!=79:
+    s+=" not"
+print(s+" be the number of coconuts in the pile")
