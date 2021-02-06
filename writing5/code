@@ -1,0 +1,37 @@
+import random
+text1 = input("Give me a text to eat: ").lower()
+text2 = input("Give me another text to eat: ").lower()
+length = int(input("How big of a phrase do you want me to make? "))
+first = input("And the first word? ").lower()
+while first not in text1 and first not in text2:
+    first = input("Give me something that's actually in the text please. First word? ").lower()
+i=1
+word=first
+phrase=first
+while i<length:
+    t1=text1.count(word)
+    t2=text2.count(word)
+    ind = int((t1+t2)*random.random())
+    lim=-len(word)-1
+    if ind<t1:
+        temp=text1
+        j=0
+        if t1==1:
+            j=1
+            ind=1
+    else:
+        temp=text2
+        j=t1
+        if t2==1:
+            j=1
+            ind=1
+    while j<=ind:
+        temp=temp[lim+len(word)+1:len(temp)]
+        lim=temp.index(word)
+        j+=1
+    temp=temp[lim+len(word)+1:len(temp)]
+    temp.strip()
+    word=temp[0:temp.index(" ")]
+    phrase+=" "+word
+    i+=1
+print(phrase)
