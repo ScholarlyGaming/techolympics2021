@@ -1,0 +1,35 @@
+n=-1
+n=int(input("Enter number of pebbles: "))
+while n<=0:
+    n=int(input("Enter a meaningful number of pebbles please: "))
+if n%6==0:
+    print("i'm being set up to lose aren't i")
+c=False
+i=0
+while n>0:
+    x=n%6
+    if x==0 or x==6:
+        x=1
+    n-=x
+    if x==1:
+        print("I'm taking 1 pebble. There are "+str(n)+" left.")
+    else:
+        print("I'm taking "+str(x)+" pebbles. There are "+str(n)+" left.")
+    if n==0:
+        c=True
+        break
+    x=int(input("Your move? Take "))
+    while x<1 or x>5:
+        x=int(input("Your legal move? (Take 1-5 pebbles.) Take "))
+    n-=x
+    if n==1:
+        print("(There's only 1 pebble left.)")
+    else:
+        print("(There are "+str(n)+" pebbles left.)")
+    i+=1
+    if i==5:
+        print("This is a fair game that both of us can win.")
+if c:
+    print("Yay I won!")
+else:
+    print("Oof")
