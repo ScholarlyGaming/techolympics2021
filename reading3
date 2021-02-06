@@ -1,0 +1,65 @@
+<html>
+<body>
+<script>
+
+//Previously analysed in reading2. It creates an array of integers.
+function buildArray(inputString)
+{
+    myList = new Array();
+	  myList = inputString.split(",");
+	  for (item = 0; item < myList.length; item++)
+	  {
+		    myList[item] = parseInt(myList[item]);
+	  }
+    return myList;
+}
+
+/* What does function doTheThing do? */
+function doTheThing(myList)
+{
+    //Expects an array of integers
+    var count = 0;
+    for (i = 0; i < myList.length; i++)
+    {
+        var flag = false;
+        //Goes through all the elements after the one with an index of i:
+        for (j = i+1; j < myList.length; j++)
+        {
+            //If the two elements of the array corresponding to the indices of i and j are equal...
+            if (myList[i] == myList[j])
+                flag = true;
+            //...set a flag
+        }
+        //If the flag has been set, add 1 to the counter.
+        if (!flag)
+            ++count;
+    }
+    //The counter will increase by 1 whenever an element has a duplicate that appears after it.
+    //Therefore, count will be the number of elements that are the duplicates of other elements.
+    //Each pair counts as 1, each triplet counts as 2...
+    //Subtracting count from the number of elements in myList would result in the number of unique elements in myList.
+    return count;
+}
+//Run when button is pressed
+function submit()
+{
+    //Gets the input
+	  var inputString = document.getElementById("inputBox").value;
+    //Turns it into an array of integers
+	  var myList = buildArray(inputString); 
+    //Counts the number of duplicates
+    var result = doTheThing(myList);
+	  //Displays this result
+	  document.getElementById("result").innerHTML = result;
+
+}
+</script>
+<!-- Again, same potential problems with <p> tags. -->
+Input a list of integers separated by commas, e.g. 4, 1, 2, 6, 3, 4<p></p>
+<!-- Input and submit button -->
+<input id="inputBox"></input><button id="submit" onclick="submit()">submit data</button>
+<!-- Display for result -->
+<div id="result">
+</div>
+</body>
+</html>
